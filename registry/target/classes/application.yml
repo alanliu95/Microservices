@@ -1,23 +1,20 @@
 spring:
   application:
     name: registry
+server:
+  port: 8761
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    registerWithEureka: false # 是否将自己的 http rest 服务注册到自己（eureka server）
+    fetchRegistry: false      # 是否进行同步其他Eureka server节点数据
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
 #  zipkin:
 #    base-url: http://localhost:9411
 #  boot:
 #    admin:
 #      client:
 #        url: http://localhost:8084
-
-
-server:
-  port: 8761
-
-eureka:
-  instance:
-    hostname: localhost
-  client:
-#    设置服务端形式
-    registerWithEureka: false
-    fetchRegistry: false
-    serviceUrl:
-      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/

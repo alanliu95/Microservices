@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1，user-scalable=yes">
+    <title>SureBet Utils</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'sureBet/css/bootstrap.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'sureBet/css/index/index.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'sureBet/css/dashboard/dashboard.css' %}">
+
+    <script type='text/javascript' src="{% static 'sureBet/js/jquery-3.3.1.min.js' %}"></script>
+    {#
+    <script type='text/javascript' src="{% static 'sureBet/js/vendor/popper.min.js' %}"></script>
+    #}
+    <script type='text/javascript' src="{% static 'sureBet/js/bootstrap.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'sureBet/js/feather.min.js' %}"></script>
+    <script type='text/javascript' src="{% static 'sureBet/js/dd/dd_soccer.js' %}"></script>
+    <script type='text/javascript' src="{% static 'sureBet/js/index/index.js' %}"></script>
+    <script type='text/javascript' src="{% static 'sureBet/js/utils/mobile-detect.js' %}"></script>
+</head>
+<body>
+
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">J&Z's Reservoir</a>
+
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        {#
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">#}
+            <nav class="col-md-1.5 d-block bg-light sidebar">
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:go_dd_soccer();">
+                                <span data-feather="home"></span>
+                                dd soccer <span class="sr-only">(current)</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="javascript:go_dd_basketball();">
+                                <span data-feather="file"></span>
+                                dd basketball
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:go_hedge();">
+                                <span data-feather="shopping-cart"></span>
+                                hedge
+                            </a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:go_crawler();">
+                                <span data-feather="layers"></span>
+                                crawler
+                            </a>
+                        </li>
+                    </ul>
+
+
+                </div>
+            </nav>
+
+            <main role="main" id="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            </main>
+    </div>
+</div>
+
+<!-- 修饰alert-->
+<div class="alert"
+     id="alert_notification"
+     style="z-index: 9999;
+            position:absolute;
+            top:1px;
+            left:350px;
+            right: 170px;
+            width: 300px;
+"
+></div>
+{#
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+#}
+<script>
+    feather.replace()
+</script>
+
+
+</body>
+
+</html>
