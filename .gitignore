@@ -1,5 +1,11 @@
 HELP.md
 /target/
+/account/target/
+/registry/target/
+/dependencies/target/
+/gateway/target/
+/aggregator/target/
+
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
