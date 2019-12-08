@@ -5,6 +5,9 @@ HELP.md
 /dependencies/target/
 /gateway/target/
 /aggregator/target/
+/commons/target/
+/asset/target/
+/event-handler/target/
 
 !.mvn/wrapper/maven-wrapper.jar
 
