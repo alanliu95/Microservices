@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!--    <script type="text/javascript" th:src="/user@{/js/layer/layer.js}"></script>-->
+    <!--    <script type="text/javascript" th:src="/user@{/js/common.js}"></script>-->
+    <script type="text/javascript" src="/user/js/layer/layer.js"></script>
+    <script type="text/javascript" src="/user/js/common.js"></script>
+</head>
+
+<body class="bg-gradient-primary" style="background-image:url('/user/image/sandbeach.jpg');background-repeat:no-repeat;background-position:left top; background-size: cover;
+-webkit-background-size: cover;
+-moz-background-size: cover;
+-o-background-size: cover; ">
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 col-lg-offset-4" style="margin-top: 300px; background-color: white">
+            <div class="p-5">
+                <div class="text-center">
+                    <h1 class="h4 text-gray-900 mb-4">Welcome!</h1>
+                    <!--                    <h1 class="h4 text-red-900 mb-4" th:text="${msg}" style="color: red">warning info</h1>-->
+                </div>
+                <form class="user" action="/user/login" method="post">
+                    <div class="form-group">
+                        <input type="text" name="nickname" class="form-control form-control-user" id="nickname"
+                               aria-describedby="emailHelp" placeholder="Username">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" class="form-control form-control-user"
+                               id="password" placeholder="Password">
+                    </div>
+
+                </form>
+                <button class="btn btn-primary btn-user btn-block" onclick="doLogin()">登录</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+<script>
+    function doLogin() {
+        //表单验证
+        //md5加密
+        g_showLoading();
+        $.ajax({
+            url: "/user/login",
+            type: "POST",
+            data: {
+                nickname: $("#nickname").val(),
+                password: $("#password").val()
+            },
+            success: function (data) {
+                layer.closeAll();
+                if (data.code == 0) {
+                    layer.msg("成功");
+                    window.location.href = "/";
+                } else {
+                    layer.msg(data.msg);
+                }
+            },
+            error: function () {
+                layer.closeAll();
+            }
+        })
+    }
+
+    function g_showLoading() {
+        var idx = layer.msg('处理中...',
+            {icon: 16, shade: [0.5, '#f5f5f5'], scrollbar: false, offset: '0px', time: 100000});
+        return idx;
+    }
+
+    //salt
+    var g_passsword_salt = "1a2b3c4d"
+</script>
+</html>

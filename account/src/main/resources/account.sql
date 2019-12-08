@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS `users`;
+DROP TABLE IF EXISTS user;
 CREATE TABLE `users`
 (
     `id`              bigint(20)   auto_increment COMMENT '用户id',

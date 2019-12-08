@@ -21,3 +21,4 @@ eureka:
 zuul:
   routes:
     account-service: /user/**
+    asset-service: /device/**
