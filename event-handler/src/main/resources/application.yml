@@ -4,7 +4,11 @@ mqtt:
   pipelines:
     - mqttTopic: /site/data
       kafkaTopic: site-data
-      consumerCnt: 2
-    - mqttTopic: /site/status
+      consumerCnt: 3
+    - mqttTopic: /site/status/#
       kafkaTopic: site-status
       consumerCnt: 1
+
+logging:
+  level:
+    com.alan.microservices.event.handler.Producer: debug
