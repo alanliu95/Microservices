@@ -1,0 +1,3 @@
+#logging.level.com.alan.mqtt.client.Client=debug
+server:
+  port:

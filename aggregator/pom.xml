@@ -15,6 +15,7 @@
         <module>../account</module>
         <module>../asset</module>
         <module>../event-handler</module>
+        <module>../mqtt-simulator</module>
     </modules>
 
 </project>

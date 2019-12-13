@@ -4,13 +4,13 @@ import org.eclipse.paho.client.mqttv3.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class WildcardTest implements MqttCallback {
-    public static final Logger logger = LoggerFactory.getLogger(WildcardTest.class);
+public class MqttWildcardTest implements MqttCallback {
+    public static final Logger logger = LoggerFactory.getLogger(MqttWildcardTest.class);
 
     public static void main(String[] args) throws MqttException {
         MqttClient client = new MqttClient("tcp://192.168.1.13:1883", "Wildcard");
         client.connect();
-        client.setCallback(new WildcardTest());
+        client.setCallback(new MqttWildcardTest());
         client.subscribe("/site/status/#");
     }
 

@@ -39,6 +39,6 @@ public class EventHandlerApplication {
         String[] mqttTopics = map.keySet().toArray(new String[map.size()]);
         new Producer(config.getBrokerUrl(), config.getClientId(), mqttTopics, map);
 //        System.out.println("ddd");
-//        while (true);
+        while (true) ;
     }
 }

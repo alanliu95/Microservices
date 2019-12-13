@@ -1,13 +1,14 @@
 HELP.md
-/target/
-/account/target/
-/registry/target/
-/dependencies/target/
-/gateway/target/
-/aggregator/target/
-/commons/target/
-/asset/target/
-/event-handler/target/
+**/target/
+#/account/target/
+#/registry/target/
+#/dependencies/target/
+#/gateway/target/
+#/aggregator/target/
+#/commons/target/
+#/asset/target/
+#/event-handler/target/
+#/mqtt-simulator/target/
 
 !.mvn/wrapper/maven-wrapper.jar
 
