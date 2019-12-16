@@ -1,4 +1,4 @@
-package com.alan.microservices.event.handler.test;
+package com.alan.microservices.mqtt.test;
 
 import java.util.ArrayList;
 

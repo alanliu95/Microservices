@@ -64,12 +64,13 @@ public class MqttSimulator implements Runnable, MqttCallback {
 
     @Override
     public void connectionLost(Throwable cause) {
+        cause.printStackTrace();
         System.out.println("Connection to brokerUrl" + " lost!" + cause);
         System.exit(-1);
     }
 
     @Override
-    public void messageArrived(String topic, MqttMessage message) throws Exception {
+    public void messageArrived(String topic, MqttMessage message) throws MqttException {
 
     }
 
