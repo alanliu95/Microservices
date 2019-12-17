@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 public class Config {
     private String brokerUrl;
     private String clientId;
+    private Boolean cleanSession;
     private Pipeline[] pipelines;
 
     @Data

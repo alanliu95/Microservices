@@ -1,6 +1,7 @@
 mqtt:
   brokerUrl: tcp://192.168.1.13:1883
   clientId: springboot
+  cleanSession: false
   pipelines:
     - mqttTopic: /site/data
       kafkaTopic: site-data
