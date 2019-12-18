@@ -1,11 +1,11 @@
-package com.alan.microservices.event.handler.domain;
+package com.alan.microservices.commons.asset.domain;
 
 import lombok.Data;
 
 @Data
 public class Device {
-    private Integer id;
-    private Integer siteId;
+    private Long id;
+    private Long siteId;
     private String name;
     private String token;
     private Integer devType;

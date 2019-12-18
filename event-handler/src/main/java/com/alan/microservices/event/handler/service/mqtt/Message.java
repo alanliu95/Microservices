@@ -1,4 +1,4 @@
-package com.alan.microservices.event.handler;
+package com.alan.microservices.event.handler.service.mqtt;
 
 import lombok.Data;
 

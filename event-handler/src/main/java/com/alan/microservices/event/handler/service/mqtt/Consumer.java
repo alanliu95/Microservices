@@ -1,4 +1,4 @@
-package com.alan.microservices.event.handler;
+package com.alan.microservices.event.handler.service.mqtt;
 
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -39,6 +39,7 @@ public class Consumer implements Runnable {
         while (!Thread.currentThread().isInterrupted()) {
             try {
                 message = queue.take();
+                //todo 添加回调函数，判断操作是否成功
                 kafkaProducer.send(new ProducerRecord<>(topic, Integer.toString(key.getAndIncrement()), message));
                 if (i == Integer.MAX_VALUE)
                     i = 0;

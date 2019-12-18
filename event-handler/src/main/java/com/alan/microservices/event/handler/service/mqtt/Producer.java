@@ -1,4 +1,4 @@
-package com.alan.microservices.event.handler;
+package com.alan.microservices.event.handler.service.mqtt;
 
 import org.eclipse.paho.client.mqttv3.*;
 import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.concurrent.BlockingQueue;
-import java.util.regex.Pattern;
 
 //@Component
 public class Producer implements MqttCallback {
