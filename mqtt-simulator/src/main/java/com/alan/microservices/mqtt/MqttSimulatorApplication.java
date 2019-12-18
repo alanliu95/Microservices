@@ -1,7 +1,6 @@
 package com.alan.microservices.mqtt;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.eclipse.paho.client.mqttv3.persist.MqttDefaultFilePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

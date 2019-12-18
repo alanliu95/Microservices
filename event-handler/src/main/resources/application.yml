@@ -2,7 +2,7 @@ server:
   port: 8084
 spring:
   application:
-    name: event-handler-service #指定服务名称
+    name: event-service #指定服务名称
 eureka:
   client:
     service-url:
@@ -26,7 +26,13 @@ status:
   kafkaTopic: site-status
   partitions: 3
 
-
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  security:
+    enabled: false
 logging:
   level:
     com.alan.microservices.event.handler.Producer: debug

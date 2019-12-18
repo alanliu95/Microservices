@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/sites")
 public interface SiteFeignSvc {
     @RequestMapping()
-    List<Site> getAllDevices();
+    List<Site> getAll();
 
     @RequestMapping("/{id}")
     Site getById(@PathVariable("id") Long id);

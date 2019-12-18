@@ -20,5 +20,6 @@ eureka:
 #      enabled: true # 默认为true，可以省略
 zuul:
   routes:
-    account-service: /user/**
-    asset-service: /device/**
+    account-service: /account/**
+    asset-service: /asset/**
+    event-service: /event/**

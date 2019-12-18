@@ -1,7 +1,9 @@
 package com.alan.microservices.event.handler.etl.status;
 
 import com.alan.microservices.commons.asset.domain.Device;
+import com.alan.microservices.commons.asset.domain.Site;
 import com.alan.microservices.commons.asset.service.DevFeignSvc;
+import com.alan.microservices.commons.asset.service.SiteFeignSvc;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -16,6 +18,7 @@ import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
@@ -25,24 +28,37 @@ import java.util.concurrent.ExecutorService;
 @Data
 public class DevStatusHandler {
     public static final Logger LOGGER = LoggerFactory.getLogger(DevStatusHandler.class);
-    private final int THREAD_NUM;
-    private final String TOPIC;
+    private int threadNum;
+    private String topic;
 
     private ObjectMapper objectMapper;
-    private DevFeignSvc deviceService;
+    private DevFeignSvc devFeignSvc;
+    private SiteFeignSvc siteFeignSvc;
     private ExecutorService executorService;
     private ConcurrentHashMap<Long, ConcurrentHashMap<Long, Boolean>> statusTable;
 
+    private List<Device> devices;
+    private List<Site> sites;
     @Autowired
-    public DevStatusHandler(DevStatusHandlerConfig config, DevFeignSvc deviceService, ObjectMapper objectMapper) {
-        this.THREAD_NUM = config.getPartitions();
-        this.TOPIC = config.getKafkaTopic();
+    public DevStatusHandler(DevStatusHandlerConfig config, DevFeignSvc devFeignSvc, SiteFeignSvc siteFeignSvc, ObjectMapper objectMapper) {
+        this.threadNum = config.getPartitions();
+        this.topic = config.getKafkaTopic();
 
-        this.deviceService = deviceService;
+        this.siteFeignSvc = siteFeignSvc;
+        this.devFeignSvc = devFeignSvc;
         this.objectMapper = objectMapper;
 
         statusTable = new ConcurrentHashMap<>();
-        statusTable.put(1L, new ConcurrentHashMap<>());
+
+        this.devices = devFeignSvc.getAllDevices();
+        this.sites = siteFeignSvc.getAll();
+        for (Site site : sites) {
+            ConcurrentHashMap map = new ConcurrentHashMap<Long, Boolean>();
+            for (Device device : devices) {
+                map.put(device.getId(), false);
+            }
+            statusTable.put(site.getId(), map);
+        }
 
 //        executorService= Executors.newFixedThreadPool(THREAD_NUM);
 //        for (int i = 0; i < THREAD_NUM; i++) {
@@ -53,8 +69,8 @@ public class DevStatusHandler {
 
     @PostConstruct
     public void start() throws IOException {
-        for (int i = 0; i < THREAD_NUM; i++) {
-            Thread thread = new Thread(new HandlerThread(TOPIC), "HandlerThread-" + i);
+        for (int i = 0; i < threadNum; i++) {
+            Thread thread = new Thread(new HandlerThread(topic), "HandlerThread-" + i);
             thread.start();
         }
     }
@@ -83,7 +99,7 @@ public class DevStatusHandler {
                         for (ConsumerRecord<String, String> record : records) {
                             LOGGER.debug("线程:{} kafka消息：key={},value={}", Thread.currentThread().getName(), record.key(), record.value());
                             DeviceStatus status = objectMapper.readValue(record.value(), DeviceStatus.class);
-                            Device device = deviceService.getByToken(status.getToken());
+                            Device device = devFeignSvc.getByToken(status.getToken());
                             if (device == null) {
 //                                LOGGER.debug();
                                 throw new RuntimeException("设备不存在");
