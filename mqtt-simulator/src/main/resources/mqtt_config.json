@@ -20,40 +20,40 @@
   },
   {
     "brokerUrl": "tcp://192.168.1.13:1883",
-    "clientId": "centos7",
+    "clientId": "vm-ubuntu16",
     "lwt": {
-      "topic": "/site/status/centos7",
-      "msg": "{\"token\":\"centos7\",\"status\":0}"
+      "topic": "/site/status/vm-ubuntu16",
+      "msg": "{\"token\":\"vm-ubuntu16\",\"status\":0}"
     },
     "topic": "/site/data",
     "qos": 1,
     "interval": 3000,
     "afterConnect": {
-      "topic": "/site/status/centos7",
-      "msg": "{\"token\":\"centos7\",\"status\":1}"
+      "topic": "/site/status/vm-ubuntu16",
+      "msg": "{\"token\":\"vm-ubuntu16\",\"status\":1}"
     },
     "beforeClose": {
-      "topic": "/site/status/centos7",
-      "msg": "{\"token\":\"centos7\",\"status\":0}"
+      "topic": "/site/status/vm-ubuntu16",
+      "msg": "{\"token\":\"vm-ubuntu16\",\"status\":0}"
     }
   },
   {
     "brokerUrl": "tcp://192.168.1.13:1883",
-    "clientId": "windows10",
+    "clientId": "desktop-alan",
     "lwt": {
-      "topic": "/site/status/windows10",
-      "msg": "{\"token\":\"windows10\",\"status\":0}"
+      "topic": "/site/status/desktop-alan",
+      "msg": "{\"token\":\"desktop-alan\",\"status\":0}"
     },
     "topic": "/site/data",
     "qos": 1,
     "interval": 3000,
     "afterConnect": {
-      "topic": "/site/status/windows10",
-      "msg": "{\"token\":\"windows10\",\"status\":1}"
+      "topic": "/site/status/desktop-alan",
+      "msg": "{\"token\":\"desktop-alan\",\"status\":1}"
     },
     "beforeClose": {
-      "topic": "/site/status/windows10",
-      "msg": "{\"token\":\"windows10\",\"status\":0}"
+      "topic": "/site/status/desktop-alan",
+      "msg": "{\"token\":\"desktop-alan\",\"status\":0}"
     }
   }
 ]

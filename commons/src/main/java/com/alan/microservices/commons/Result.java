@@ -1,9 +1,20 @@
 package com.alan.microservices.commons;
 
+import lombok.Data;
+
 public class Result<T> {
     private int code;
     private String msg;
     T data;
+
+    public Result() {
+    }
+
+    public Result(int code, String msg, T data) {
+        this.code = code;
+        this.msg = msg;
+        this.data = data;
+    }
 
     /**
      * 操作成功时调用

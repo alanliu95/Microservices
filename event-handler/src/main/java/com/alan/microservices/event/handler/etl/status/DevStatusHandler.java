@@ -48,10 +48,11 @@ public class DevStatusHandler {
         this.devFeignSvc = devFeignSvc;
         this.objectMapper = objectMapper;
 
+
         statusTable = new ConcurrentHashMap<>();
 
-        this.devices = devFeignSvc.getAllDevices();
-        this.sites = siteFeignSvc.getAll();
+        this.devices = devFeignSvc.getAllDevices().getData();
+        this.sites = siteFeignSvc.getAll().getData();
         for (Site site : sites) {
             ConcurrentHashMap map = new ConcurrentHashMap<Long, Boolean>();
             for (Device device : devices) {
@@ -99,7 +100,7 @@ public class DevStatusHandler {
                         for (ConsumerRecord<String, String> record : records) {
                             LOGGER.debug("线程:{} kafka消息：key={},value={}", Thread.currentThread().getName(), record.key(), record.value());
                             DeviceStatus status = objectMapper.readValue(record.value(), DeviceStatus.class);
-                            Device device = devFeignSvc.getByToken(status.getToken());
+                            Device device = devFeignSvc.getByToken(status.getToken()).getData();
                             if (device == null) {
 //                                LOGGER.debug();
                                 throw new RuntimeException("设备不存在");

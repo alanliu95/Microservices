@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/siteInfo")
 public class SiteInfoController {
-    @Autowired
-    SiteFeignSvc siteFeignSvc;
-
-    @RequestMapping("/{id}")
-    Site getById(@PathVariable("id") Long id) {
-        return siteFeignSvc.getById(id);
-    }
+//    @Autowired
+//    SiteFeignSvc siteFeignSvc;
+//
+//    @RequestMapping("/{id}")
+//    Site getById(@PathVariable("id") Long id) {
+//        return siteFeignSvc.getById(id);
+//    }
 }

@@ -1,12 +1,10 @@
 package com.alan.microservices.asset.controller;
 
 import com.alan.microservices.asset.service.SiteService;
+import com.alan.microservices.commons.Result;
 import com.alan.microservices.commons.asset.domain.Site;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,9 +16,9 @@ public class SiteController {
     SiteService siteService;
 
     @RequestMapping(method = RequestMethod.GET)
-    List<Site> getAll() {
+    Result<List<Site>> getAll() {
         List<Site> sites = siteService.getAll();
-        return sites;
+        return Result.success(sites);
     }
 
     @RequestMapping(path = "/{id}", method = RequestMethod.GET)
@@ -28,7 +26,33 @@ public class SiteController {
         Site site = siteService.getById(id);
         return site;
     }
+
+    @RequestMapping(path = "/{id}/detail", method = RequestMethod.GET)
+    Site getDevDetail(@PathVariable(value = "id") Long id) {
+        Site site = siteService.getById(id);
+        return site;
+    }
 }
+
+//@RestController
+////@CrossOrigin
+//@RequestMapping("/sites")
+//public class SiteController {
+//    @Autowired
+//    SiteService siteService;
+//
+//    @RequestMapping(method = RequestMethod.GET)
+//    List<Site> getAll() {
+//        List<Site> sites = siteService.getAll();
+//        return sites;
+//    }
+//
+//    @RequestMapping(path = "/{id}", method = RequestMethod.GET)
+//    Site getDevById(@PathVariable(value = "id") Long id) {
+//        Site site = siteService.getById(id);
+//        return site;
+//    }
+//}
 
 //@RestController
 //@RequestMapping("/devices")

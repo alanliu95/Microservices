@@ -1,5 +1,6 @@
 package com.alan.microservices.event.handler.controller;
 
+import com.alan.microservices.commons.Result;
 import com.alan.microservices.commons.asset.domain.Device;
 import com.alan.microservices.commons.asset.service.DevFeignSvc;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,12 @@ public class DeviceInfoController {
     DevFeignSvc devFeignSvc;
 
     @RequestMapping("/token/{token}")
-    Device getByToken(@PathVariable("token") String token) {
+    Result<Device> getByToken(@PathVariable("token") String token) {
         return devFeignSvc.getByToken(token);
     }
 
     @RequestMapping("/{id}")
-    Device getByToken(@PathVariable("id") Long id) {
+    Result<Device> getByToken(@PathVariable("id") Long id) {
         return devFeignSvc.getById(id);
     }
 }
