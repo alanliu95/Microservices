@@ -51,15 +51,15 @@ public class DevStatusHandler {
 
         statusTable = new ConcurrentHashMap<>();
 
-        this.devices = devFeignSvc.getAllDevices().getData();
-        this.sites = siteFeignSvc.getAll().getData();
-        for (Site site : sites) {
-            ConcurrentHashMap map = new ConcurrentHashMap<Long, Boolean>();
-            for (Device device : devices) {
-                map.put(device.getId(), false);
-            }
-            statusTable.put(site.getId(), map);
-        }
+//        this.devices = devFeignSvc.getAllDevices().getData();
+//        this.sites = siteFeignSvc.getAll().getData();
+//        for (Site site : sites) {
+//            ConcurrentHashMap map = new ConcurrentHashMap<Long, Boolean>();
+//            for (Device device : devices) {
+//                map.put(device.getId(), false);
+//            }
+//            statusTable.put(site.getId(), map);
+//        }
 
 //        executorService= Executors.newFixedThreadPool(THREAD_NUM);
 //        for (int i = 0; i < THREAD_NUM; i++) {
@@ -77,6 +77,7 @@ public class DevStatusHandler {
     }
 
     private class HandlerThread implements Runnable {
+        private int POLL_PERIOD = 100;
         private KafkaConsumer<String, String> consumer;
 
         public HandlerThread(String kafkaTopic) throws IOException {
@@ -89,29 +90,32 @@ public class DevStatusHandler {
         @Override
         public void run() {
             try {
-                Thread.sleep(3000);
+                Thread.sleep(3000); // todo 等待其他依赖被初始化
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             try {
                 while (true) {
-                    ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+                    ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(POLL_PERIOD));
                     if (!records.isEmpty()) {
                         for (ConsumerRecord<String, String> record : records) {
                             LOGGER.debug("线程:{} kafka消息：key={},value={}", Thread.currentThread().getName(), record.key(), record.value());
                             DeviceStatus status = objectMapper.readValue(record.value(), DeviceStatus.class);
                             Device device = devFeignSvc.getByToken(status.getToken()).getData();
                             if (device == null) {
-//                                LOGGER.debug();
+                                LOGGER.error("device token {}", status.getToken());
                                 throw new RuntimeException("设备不存在");
                             }
-                            Map<Long, Boolean> deviceStatus = statusTable.get(1L);
-                            deviceStatus.put(device.getId(), status.getStatus() == 0 ? false : true);
-
+                            ConcurrentHashMap<Long, Boolean> targetSiteDevices = statusTable.get(device.getSiteId());
+                            if (targetSiteDevices == null) {
+                                targetSiteDevices = new ConcurrentHashMap<Long, Boolean>();
+                                statusTable.put(device.getSiteId(), targetSiteDevices);
+                            }
+                            targetSiteDevices.put(device.getId(), status.getStatus() == 0 ? false : true);
                         }
                     }
                 }
-            } catch (Exception e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             } finally {
                 consumer.close();
