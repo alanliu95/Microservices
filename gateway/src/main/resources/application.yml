@@ -6,7 +6,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.22:30001/eureka/
+      defaultZone: http://192.168.1.16:8761/eureka/
 
 
 # ========添加配置=======

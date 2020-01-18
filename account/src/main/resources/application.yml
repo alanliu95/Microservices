@@ -5,9 +5,9 @@ spring:
     name: account-service #指定服务名称
   datasource:
     username: root
-    password: alan
+    password: sixinbuxi
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://192.168.1.13:3306/microservices?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false #可考虑加一个查询参数
+    url: jdbc:mysql://zrylovestan.com:3306/microservices?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false #可考虑加一个查询参数
 #  datasource:
 #    hikari:
 #      driver-class-name: com.mysql.cj.jdbc.Driver
@@ -27,7 +27,7 @@ mybatis: #mybatis
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.22:30001/eureka/
+      defaultZone: http://192.168.1.16:8761/eureka/
   instance:
     prefer-ip-address: true #将本机ip注册到eureka server,而不是hostname
 

@@ -6,12 +6,12 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.22:30001/eureka/
+      defaultZone: http://192.168.1.16:8761/eureka/
   instance:
     prefer-ip-address: true #将本机ip注册到eureka server,而不是hostname
 
 mqtt:
-  brokerUrl: tcp://192.168.1.13:1883
+  brokerUrl: tcp://zrylovestan.com:1883
   clientId: springboot
   cleanSession: false
   pipelines:

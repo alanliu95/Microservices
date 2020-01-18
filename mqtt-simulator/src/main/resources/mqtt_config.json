@@ -1,6 +1,6 @@
 [
   {
-    "brokerUrl": "tcp://192.168.1.13:1883",
+    "brokerUrl": "tcp://zrylovestan.com:1883",
     "clientId": "ubuntu_14th",
     "lwt": {
       "topic": "/site/status/ubuntu_14th",
@@ -19,7 +19,7 @@
     }
   },
   {
-    "brokerUrl": "tcp://192.168.1.13:1883",
+    "brokerUrl": "tcp://zrylovestan.com:1883",
     "clientId": "vm-ubuntu16",
     "lwt": {
       "topic": "/site/status/vm-ubuntu16",
@@ -38,7 +38,7 @@
     }
   },
   {
-    "brokerUrl": "tcp://192.168.1.13:1883",
+    "brokerUrl": "tcp://zrylovestan.com:1883",
     "clientId": "desktop-alan",
     "lwt": {
       "topic": "/site/status/desktop-alan",
