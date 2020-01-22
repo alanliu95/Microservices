@@ -13,13 +13,20 @@
     </parent>
 
     <groupId>com.alan.microservices</groupId>
-    <artifactId>dependencies</artifactId>
+    <artifactId>microservices-parent</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
 
-    <name>dependencies</name>
-<!--    <url>http://www.funtl.com</url>-->
-<!--    <inceptionYear>2018-Now</inceptionYear>-->
+    <name>microservices-parent</name>
+    <modules>
+        <module>../commons</module>
+        <module>../gateway</module>
+        <module>../registry</module>
+        <module>../account</module>
+        <module>../asset</module>
+        <module>../event-handler</module>
+        <module>../mqtt-simulator</module>
+    </modules>
 
     <properties>
         <!-- Environment Settings -->
@@ -69,11 +76,11 @@
         </dependencies>
     </dependencyManagement>
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>com.alan.microservices</groupId>-->
-<!--            <artifactId>commons</artifactId>-->
-<!--            <version>1.0.0-SNAPSHOT</version>-->
-<!--        </dependency>-->
+        <!--        <dependency>-->
+        <!--            <groupId>com.alan.microservices</groupId>-->
+        <!--            <artifactId>commons</artifactId>-->
+        <!--            <version>1.0.0-SNAPSHOT</version>-->
+        <!--        </dependency>-->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
