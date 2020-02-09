@@ -13,6 +13,7 @@ public class Producer implements MqttCallback {
     public static final Logger logger = LoggerFactory.getLogger(Producer.class);
     public static final int QOS = 1;
     private MqttClient mqttClient;
+    // 每个mqtt topic通配符对应一个线程安全队列
     private Map<String, BlockingQueue<String>> map;
 
     //    @Autowired

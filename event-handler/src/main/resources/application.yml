@@ -37,3 +37,5 @@ logging:
   level:
     com.alan.microservices.event.handler.Producer: debug
     com.alan.microservices.event.handler.etl.DevStatusHandler: debug
+    com.alan.microservices.event.handler.service.mqtt.Producer: debug
+    org.apache.kafka.*: info
