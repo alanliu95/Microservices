@@ -39,21 +39,59 @@
   },
   {
     "brokerUrl": "tcp://zrylovestan.com:1883",
-    "clientId": "desktop-alan",
+    "clientId": "pi",
     "lwt": {
-      "topic": "/site/status/desktop-alan",
-      "msg": "{\"token\":\"desktop-alan\",\"status\":0}"
+      "topic": "/site/status/pi",
+      "msg": "{\"token\":\"pi\",\"status\":0}"
     },
     "topic": "/site/data",
     "qos": 1,
     "interval": 3000,
     "afterConnect": {
-      "topic": "/site/status/desktop-alan",
-      "msg": "{\"token\":\"desktop-alan\",\"status\":1}"
+      "topic": "/site/status/pi",
+      "msg": "{\"token\":\"pi\",\"status\":1}"
     },
     "beforeClose": {
-      "topic": "/site/status/desktop-alan",
-      "msg": "{\"token\":\"desktop-alan\",\"status\":0}"
+      "topic": "/site/status/pi",
+      "msg": "{\"token\":\"pi\",\"status\":0}"
+    }
+  },
+  {
+    "brokerUrl": "tcp://zrylovestan.com:1883",
+    "clientId": "stm32",
+    "lwt": {
+      "topic": "/site/status/stm32",
+      "msg": "{\"token\":\"stm32\",\"status\":0}"
+    },
+    "topic": "/site/data",
+    "qos": 1,
+    "interval": 3000,
+    "afterConnect": {
+      "topic": "/site/status/stm32",
+      "msg": "{\"token\":\"stm32\",\"status\":1}"
+    },
+    "beforeClose": {
+      "topic": "/site/status/stm32",
+      "msg": "{\"token\":\"stm32\",\"status\":0}"
+    }
+  },
+  {
+    "brokerUrl": "tcp://zrylovestan.com:1883",
+    "clientId": "mk60",
+    "lwt": {
+      "topic": "/site/status/mk60",
+      "msg": "{\"token\":\"mk60\",\"status\":0}"
+    },
+    "topic": "/site/data",
+    "qos": 1,
+    "interval": 3000,
+    "afterConnect": {
+      "topic": "/site/status/mk60",
+      "msg": "{\"token\":\"mk60\",\"status\":1}"
+    },
+    "beforeClose": {
+      "topic": "/site/status/mk60",
+      "msg": "{\"token\":\"mk60\",\"status\":0}"
     }
   }
 ]

@@ -40,7 +40,8 @@ public class Consumer implements Runnable {
             try {
                 message = queue.take();
                 //todo 添加回调函数，判断操作是否成功
-                kafkaProducer.send(new ProducerRecord<>(topic, Integer.toString(key.getAndIncrement()), message));
+//                kafkaProducer.send(new ProducerRecord<>(topic, Integer.toString(key.getAndIncrement()), message));
+                kafkaProducer.send(new ProducerRecord(topic,message));
                 if (i == Integer.MAX_VALUE)
                     i = 0;
             } catch (InterruptedException e) {

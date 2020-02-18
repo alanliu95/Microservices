@@ -33,9 +33,16 @@ management:
         include: '*'
   security:
     enabled: false
+
+
+ribbon:
+  ReadTimeout: 30000
+  ConnectTimeout: 30000
+
 logging:
   level:
-    com.alan.microservices.event.handler.Producer: debug
-    com.alan.microservices.event.handler.etl.DevStatusHandler: debug
-    com.alan.microservices.event.handler.service.mqtt.Producer: debug
-    org.apache.kafka.*: info
+    com.alan.microservices.event.handler.Producer: info
+    com.alan.microservices.event.handler.etl.DevStatusHandler: info
+    com.alan.microservices.event.handler.service.mqtt.Producer: info
+    com.alan.microservices.event.handler.DeviceOnlineService: info
+#  config: classpath:test-logback.xml
