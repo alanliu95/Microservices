@@ -1,10 +1,10 @@
 package com.alan.microservices.asset.service;
 
 import com.alan.microservices.asset.dao.DeviceDao;
+import com.alan.microservices.commons.asset.domain.Device;
 import com.alan.microservices.commons.asset.domain.DeviceDetail;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.alan.microservices.commons.asset.domain.Device;
 
 import java.util.List;
 

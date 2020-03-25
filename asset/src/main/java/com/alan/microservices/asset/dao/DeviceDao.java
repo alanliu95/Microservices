@@ -1,12 +1,11 @@
 package com.alan.microservices.asset.dao;
 
+import com.alan.microservices.commons.asset.domain.Device;
 import com.alan.microservices.commons.asset.domain.DeviceDetail;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
-import com.alan.microservices.commons.asset.domain.Device;
 
 import java.util.List;
-import java.util.Map;
 
 @Mapper
 public interface DeviceDao {

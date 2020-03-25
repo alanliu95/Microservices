@@ -1,9 +1,9 @@
 package com.alan.microservices.event.handler.etl.status;
 
-import com.alan.microservices.commons.asset.domain.Device;
-import com.alan.microservices.commons.asset.domain.Site;
 import com.alan.microservices.commons.asset.service.DevFeignSvc;
 import com.alan.microservices.commons.asset.service.SiteFeignSvc;
+import com.alan.microservices.commons.asset.domain.Device;
+import com.alan.microservices.commons.asset.domain.Site;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Data;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
@@ -19,7 +19,6 @@ import java.io.IOException;
 import java.time.Duration;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.Properties;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutorService;

@@ -1,8 +1,8 @@
 package com.alan.microservices.asset.controller;
 
 import com.alan.microservices.asset.service.SiteService;
-import com.alan.microservices.commons.Result;
 import com.alan.microservices.commons.asset.domain.Site;
+import com.alan.microservices.commons.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

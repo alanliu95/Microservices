@@ -1,10 +1,10 @@
 package com.alan.microservices.asset.controller;
 
 import com.alan.microservices.asset.service.DeviceService;
-import com.alan.microservices.commons.CodeMsg;
-import com.alan.microservices.commons.Result;
 import com.alan.microservices.commons.asset.domain.Device;
 import com.alan.microservices.commons.asset.domain.DeviceDetail;
+import com.alan.microservices.commons.CodeMsg;
+import com.alan.microservices.commons.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

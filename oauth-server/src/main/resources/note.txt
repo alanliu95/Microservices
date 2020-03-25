@@ -1,0 +1,2 @@
+localhost:8080/oauth/authorize?client_id=client1&response_type=code
+localhost:8080/oauth/token?username=admin&password=admin&grant_type=password&client_id=client1&client_secret=123123

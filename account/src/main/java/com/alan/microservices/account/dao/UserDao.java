@@ -1,7 +1,6 @@
 package com.alan.microservices.account.dao;
 
 import com.alan.microservices.account.domain.User;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;

@@ -1,12 +1,11 @@
 package com.alan.microservices.event.handler;
 
-import com.alan.microservices.commons.Result;
 import com.alan.microservices.commons.asset.domain.Device;
+import com.alan.microservices.commons.Result;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class JsonTest {
     public static void main(String[] args) throws IOException {

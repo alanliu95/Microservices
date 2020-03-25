@@ -1,7 +1,5 @@
 package com.alan.microservices.commons;
 
-import lombok.Data;
-
 public class Result<T> {
     private int code;
     private String msg;
