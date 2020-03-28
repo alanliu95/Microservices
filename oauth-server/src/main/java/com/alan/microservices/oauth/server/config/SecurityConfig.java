@@ -1,5 +1,8 @@
 package com.alan.microservices.oauth.server.config;
 
+import com.alan.microservices.oauth.server.authentication.SecurityAuthenticationFailureHandler;
+import com.alan.microservices.oauth.server.authentication.SecurityAuthenticationSuccessHandler;
+import com.alan.microservices.oauth.server.filter.VerificationCodeFilter;
 import com.alan.microservices.oauth.server.model.MyUserDetails;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -27,17 +31,34 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return super.authenticationManager();
     }
 
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable()
+//                .authorizeRequests()
+//                .anyRequest().permitAll()
+//
+//                .and()
+//                .formLogin()
+//
+//                .and()
+//                .logout();
+//    }
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
+                .antMatchers("/captcha.jpg").permitAll()
                 .anyRequest().permitAll()
 
                 .and()
                 .formLogin()
+//                .failureHandler(new SecurityAuthenticationFailureHandler())
+//                .successHandler(new SecurityAuthenticationSuccessHandler())
 
                 .and()
                 .logout();
+//        http.addFilterBefore(new VerificationCodeFilter(), UsernamePasswordAuthenticationFilter.class);
     }
 
     @Bean
