@@ -5,7 +5,7 @@ server:
   port: 8761
 eureka:
   instance:
-    hostname: localhost
+    hostname: 192.168.1.10
   client:
     registerWithEureka: false # 是否将自己的 http rest 服务注册到自己（eureka server）
     fetchRegistry: false      # 是否进行同步其他Eureka server节点数据

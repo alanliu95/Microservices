@@ -6,7 +6,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://192.168.1.16:30001/eureka/
+      defaultZone: http://localhost:8761/eureka/
   instance:
     prefer-ip-address: true #将本机ip注册到eureka server,而不是hostname
 
@@ -25,3 +25,8 @@ zuul:
     account-service: /account/**
     asset-service: /asset/**
     event-service: /event/**
+    auth-service: /auth/**
+
+  sensitiveHeaders: Cookie,Set-Cookie,host,connection,content-length,content-encoding,server,transfer-encoding,x-application-context
+  #添加代理头
+  add-proxy-headers: true

@@ -9,9 +9,9 @@ CREATE TABLE `tb_permission` (
   `updated` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8 COMMENT='权限表';
-insert  into `tb_permission`(`id`,`parent_id`,`name`,`enname`,`url`,`description`,`created`,`updated`) values
+insert  into sys_permission(`id`,`parent_id`,`name`,`enname`,`url`,`description`,`created`,`updated`) values
 (37,0,'系统管理','System','/',NULL,'2019-04-04 23:22:54','2019-04-04 23:22:56'),
-(38,37,'用户管理','SystemUser','/users/',NULL,'2019-04-04 23:25:31','2019-04-04 23:25:33'),
+(38,37,'用户管理','SystemUser','/sysUsers/',NULL,'2019-04-04 23:25:31','2019-04-04 23:25:33'),
 (39,38,'查看用户','SystemUserView','',NULL,'2019-04-04 15:30:30','2019-04-04 15:30:43'),
 (40,38,'新增用户','SystemUserInsert','',NULL,'2019-04-04 15:30:31','2019-04-04 15:30:44'),
 (41,38,'编辑用户','SystemUserUpdate','',NULL,'2019-04-04 15:30:32','2019-04-04 15:30:45'),
@@ -27,7 +27,7 @@ CREATE TABLE `tb_role` (
   `updated` datetime NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='角色表';
-insert  into `tb_role`(`id`,`parent_id`,`name`,`enname`,`description`,`created`,`updated`) values
+insert  into sys_role(`id`,`parent_id`,`name`,`enname`,`description`,`created`,`updated`) values
 (37,0,'超级管理员','admin',NULL,'2019-04-04 23:22:03','2019-04-04 23:22:05');
 
 CREATE TABLE `tb_role_permission` (
@@ -36,7 +36,7 @@ CREATE TABLE `tb_role_permission` (
   `permission_id` bigint(20) NOT NULL COMMENT '权限 ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COMMENT='角色权限表';
-insert  into `tb_role_permission`(`id`,`role_id`,`permission_id`) values
+insert  into sys_role_permission(`id`,`role_id`,`permission_id`) values
 (37,37,37),
 (38,37,38),
 (39,37,39),
@@ -57,7 +57,7 @@ CREATE TABLE `tb_user` (
   UNIQUE KEY `phone` (`phone`) USING BTREE,
   UNIQUE KEY `email` (`email`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='用户表';
-insert  into user(`id`,`username`,`password`,`phone`,`email`,`created`,`updated`) values
+insert  into sys_user(`id`,`username`,`password`,`phone`,`email`,`created`,`updated`) values
 (37,'admin','$2a$10$9ZhDOBp.sRKat4l14ygu/.LscxrMUcDAfeVOEPiYwbcRkoB09gCmi','15888888888','lee.lusifer@gmail.com','2019-04-04 23:21:27','2019-04-04 23:21:29');
 
 CREATE TABLE `tb_user_role` (
@@ -66,5 +66,5 @@ CREATE TABLE `tb_user_role` (
   `role_id` bigint(20) NOT NULL COMMENT '角色 ID',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COMMENT='用户角色表';
-insert  into `tb_user_role`(`id`,`user_id`,`role_id`) values
+insert  into sys_user_role(`id`,`user_id`,`role_id`) values
 (37,37,37);

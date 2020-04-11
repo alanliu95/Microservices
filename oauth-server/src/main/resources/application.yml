@@ -8,22 +8,22 @@ spring:
     password: sixinbuxi
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://zrylovestan.com:3306/microservices?useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true&useSSL=false #可考虑加一个查询参数
-
+#    hikari:
+#      max-lifetime: 30000
 mybatis: #mybatis
-  type-aliases-package: com.alan.microservices.domain
+#  type-aliases-package: com.alan.microservices.domain
   configuration:
     map-underscore-to-camel-case: true
     default-fetch-size: 100
     default-statement-timeout: 3000
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
 
-
-#eureka:
-#  client:
-#    service-url:
-#      defaultZone: http://192.168.1.16:30001/eureka/
-#  instance:
-#    prefer-ip-address: true #将本机ip注册到eureka server,而不是hostname
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true #将本机ip注册到eureka server,而不是hostname
 
 #management:
 #  endpoints:

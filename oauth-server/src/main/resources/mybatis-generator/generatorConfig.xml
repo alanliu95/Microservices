@@ -44,7 +44,13 @@
         <javaClientGenerator targetPackage="com.alan.mbg.dao" targetProject="src/main/java" type="XMLMAPPER"></javaClientGenerator>
 
         <!-- table标签可以有多个，至少一个，tableName指定表名，可以使用_和%通配符，我这里的配置表明匹配所有的表 -->
-        <table tableName="user">
+<!--        <table tableName="user">-->
+<!--            &lt;!&ndash; 是否只生成POJO对象 &ndash;&gt;-->
+<!--            <property name="modelOnly" value="false"/>-->
+<!--            &lt;!&ndash; 插入一条数据时，将id映射到实体类中 &ndash;&gt;-->
+<!--            <generatedKey column="id" sqlStatement="Mysql"/>-->
+<!--        </table>-->
+        <table tableName="sys_%">
             <!-- 是否只生成POJO对象 -->
             <property name="modelOnly" value="false"/>
             <!-- 插入一条数据时，将id映射到实体类中 -->

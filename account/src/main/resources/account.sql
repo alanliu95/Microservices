@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS user;
-CREATE TABLE `users`
+CREATE TABLE `sysUsers`
 (
     `id`              bigint(20)   auto_increment COMMENT '用户id',
     `nickname`        varchar(255) NOT NULL COMMENT '用户昵称',

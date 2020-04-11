@@ -1,9 +1,6 @@
 package com.alan.microservices.oauth.server.config;
 
-import com.alan.microservices.oauth.server.authentication.SecurityAuthenticationFailureHandler;
-import com.alan.microservices.oauth.server.authentication.SecurityAuthenticationSuccessHandler;
-import com.alan.microservices.oauth.server.filter.VerificationCodeFilter;
-import com.alan.microservices.oauth.server.model.MyUserDetails;
+import com.alan.microservices.oauth.server.service.UserDetailService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -13,7 +10,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
@@ -63,13 +59,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return s -> {
-            if ("admin".equals(s)) {
-                return new MyUserDetails(s, passwordEncoder().encode(s), "OP_READ_RES1,OP_UPDATE_RES1,ROLE_ADMIN,ROLE_USER");
-            }else if("user".equals(s)){
-                return new MyUserDetails(s,passwordEncoder().encode(s),"OP_READ_RES1,ROLE_USER");
-            }
-            return null;
-        };
+        return new UserDetailService();
     }
 }

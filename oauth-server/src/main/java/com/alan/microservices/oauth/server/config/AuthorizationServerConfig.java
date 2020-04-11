@@ -91,7 +91,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 
         //配置token的存储方法
         defaultTokenServices.setTokenStore(tokenStore);
-        defaultTokenServices.setAccessTokenValiditySeconds(0);
+        defaultTokenServices.setAccessTokenValiditySeconds(360);
         defaultTokenServices.setRefreshTokenValiditySeconds(1500);
 
         //配置token增加,把一般token转换为jwt token

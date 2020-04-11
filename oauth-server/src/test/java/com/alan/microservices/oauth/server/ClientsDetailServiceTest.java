@@ -27,7 +27,7 @@ public class ClientsDetailServiceTest {
         //(String clientId, String resourceIds, String scopes, String grantTypes, String authorities, String redirectUris)
         BaseClientDetails clientDetails=new BaseClientDetails("client2","resource1","scope1",
                 "authorization_code,password,client_credentials,implicit,refresh_token",
-                "www.baidu.com","OP_READ_RES1,OP_UPDATE_RES1,ROLE_ADMIN");
+                "OP_READ_RES1,OP_UPDATE_RES1,ROLE_ADMIN","www.baidu.com");
         clientDetails.setClientSecret("client2");
         clientDetailsService.addClientDetails(clientDetails);
     }
