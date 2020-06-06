@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #container {
+            width: 100%;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script type="text/javascript"
+        src="https://webapi.amap.com/maps?v=1.4.15&key=9f0cfd35321ba737993d37783347de4b"></script>
+<script src="//webapi.amap.com/ui/1.0/main.js"></script>
+<script>
+    var map = new AMap.Map('container', {
+        center: [116.397428, 39.90923],
+        layers: [//使用多个图层
+            new AMap.TileLayer.Satellite(),
+            // new AMap.TileLayer.RoadNet()
+        ],
+        zooms: [4, 18],//设置地图级别范围
+        zoom: 18
+    });
+
+    var points = [
+        {
+            "id": 1,
+            "longitude": 39.90923,
+            "latitude": 116.397428,
+            "elevation": 0.5,
+            "soilType": "黄棕壤",
+            "samplingTime": "2018-04-12T05:07:18.000+0000",
+            "sn": "S1",
+            "region": "甲醇脱硫",
+            "siteId": "1"
+        },
+        {
+            "id": 2,
+            "longitude": 39.90723,
+            "latitude": 116.397428,
+            "elevation": 0.5,
+            "soilType": "黄棕壤",
+            "samplingTime": "2018-04-12T05:07:18.000+0000",
+            "sn": "S2",
+            "region": "锅炉污水池",
+            "siteId": "1"
+        },]
+
+    //加载SimpleMarker
+    AMapUI.loadUI(['overlay/SimpleMarker'], function(SimpleMarker) {
+
+        var iconTheme = 'default';
+
+        //内置的样式
+        var iconStyles = SimpleMarker.getBuiltInIconStyles(iconTheme);
+
+        for (var i = 0, len = points.length; i < len; i++) {
+
+            new SimpleMarker({
+                iconTheme: iconTheme,
+                //使用内置的iconStyle
+                iconStyle: 'red',
+
+                //图标文字
+                iconLabel: {
+                    //A,B,C.....
+                    // innerHTML: String.fromCharCode('A'.charCodeAt(0) + i),
+                    innerHTML: points[i].sn,
+                    style: {
+                        //颜色, #333, red等等，这里仅作示例，取iconStyle中首尾相对的颜色
+                        // color: iconStyles[len - 1 - i]
+                        color: 'white'
+                    }
+                },
+
+                //显示定位点
+                showPositionPoint:true,
+
+                map: map,
+                position: [points[i].latitude,points[i].longitude],
+
+                //Marker的label(见https://lbs.amap.com/api/javascript-api/reference/overlay/#Marker)
+                label: {
+                    // content: iconStyles[i],
+                    offset: new AMap.Pixel(27, 25)
+                }
+            });
+        }
+
+    });
+
+
+
+    // var map = new AMap.Map('container',{resizeEnable: true,zoom:4});
+    // var markers = []; //province见Demo引用的JS文件
+    // // var points = [
+    // //     {
+    // //         "id": 1,
+    // //         "longitude": 32.0209,
+    // //         "latitude": 114.912,
+    // //         "elevation": 0.5,
+    // //         "soilType": "黄棕壤",
+    // //         "samplingTime": "2018-04-12T05:07:18.000+0000",
+    // //         "sn": "S1",
+    // //         "region": "甲醇脱硫",
+    // //         "siteId": "1"
+    // //     },
+    // //     {
+    // //         "id": 2,
+    // //         "longitude": 32.0233,
+    // //         "latitude": 114.909,
+    // //         "elevation": 0.5,
+    // //         "soilType": "黄棕壤",
+    // //         "samplingTime": "2018-04-12T05:07:18.000+0000",
+    // //         "sn": "S2",
+    // //         "region": "锅炉污水池",
+    // //         "siteId": "1"
+    // //     },]
+    // var points = [
+    //     {
+    //         "id": 1,
+    //         "longitude": 39.90923,
+    //         "latitude": 116.397428,
+    //         "elevation": 0.5,
+    //         "soilType": "黄棕壤",
+    //         "samplingTime": "2018-04-12T05:07:18.000+0000",
+    //         "sn": "S1",
+    //         "region": "甲醇脱硫",
+    //         "siteId": "1"
+    //     },
+    //     {
+    //         "id": 2,
+    //         "longitude": 39.90723,
+    //         "latitude": 116.397428,
+    //         "elevation": 0.5,
+    //         "soilType": "黄棕壤",
+    //         "samplingTime": "2018-04-12T05:07:18.000+0000",
+    //         "sn": "S2",
+    //         "region": "锅炉污水池",
+    //         "siteId": "1"
+    //     },]
+    // for (var i = 0; i < points.length; i += 1) {
+    //     var marker = new AMap.Marker({
+    //          position: [points[i].latitude,points[i].longitude],
+    //         //position: [116.397428, 39.90923],
+    //
+    //         title: points[i].sn,
+    //         map: map
+    //     });
+    //     // if (provinces[i].type === 2) {
+    //     //     var content= "<div class = 'taiwan'>宝岛台湾</div>";
+    //     //     baodao = new AMap.Marker({
+    //     //         content: content,
+    //     //         position: provinces[i].center.split(','),
+    //     //         title: provinces[i].name,
+    //     //         offset: new AMap.Pixel(0,0),
+    //     //         map: map
+    //     //     });
+    //     // }
+    //     markers.push(marker);
+    // }
+    // map.setFitView();
+
+</script>
+</body>
+</html>

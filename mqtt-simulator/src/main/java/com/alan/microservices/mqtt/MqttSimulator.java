@@ -23,7 +23,7 @@ public class MqttSimulator implements Runnable, MqttCallback {
             MqttDefaultFilePersistence dataStore = new MqttDefaultFilePersistence(tmpDir);
             mqttClient = new MqttClient(config.getBrokerUrl(), config.getClientId(), dataStore);
             notification = config.getLwt();
-            if (notification != null) {
+                if (notification != null) {
                 connectOptions.setWill(notification.getTopic(), notification.getMsg().getBytes(), 1, true);
             }
             mqttClient.connect(connectOptions);
